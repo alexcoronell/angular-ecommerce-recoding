@@ -9,16 +9,29 @@ import { environment } from '@env/environment';
 export class ProductService {
   private http = inject(HttpClient);
 
-  getProducts(category_id?: string) {
+  getProducts(params: { category_id?: string; category_slug?: string }) {
     const url = new URL(`${environment.apiUrl}/api/v1/products`);
-    if (category_id) {
-      url.searchParams.set('categoryId', category_id);
+    if (params.category_id) {
+      url.searchParams.set('categoryId', params.category_id);
     }
+
+    if (params.category_slug) {
+      url.searchParams.set('categorySlug', params.category_slug);
+    }
+
     return this.http.get<Product[]>(url.toString());
   }
 
-  getOne(id: string) {
-    const url = `${environment.apiUrl}/api/v1/products/${id}`;
+  getOne(params: { product_id?: number; product_slug?: string }) {
+    if (!params.product_id && !params.product_slug) {
+      throw new Error('Either product_id or product_slug must be provided');
+    }
+
+    const endpoint = params.product_id
+      ? `products/${params.product_id}`
+      : `products/slug/${params.product_slug}`;
+    const url = `${environment.apiUrl}/api/v1/${endpoint}`;
+    console.log(url);
     return this.http.get<Product>(url);
   }
 }
