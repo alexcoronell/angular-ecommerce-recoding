@@ -7,9 +7,10 @@
     soluta, ad et eveniet odit rem perferendis porro, quidem iste.
   </p>
   <p class="text-base">Numero de clientes</p>
-  <p><input [(ngModel)]="duration" type="range" min="0" max="1000" /></p>
-  @if (duration() > 0) {
-    <app-counter [duration]="duration()" [message]="message()" />
+  <p><input [(ngModel)]="$duration" type="range" min="0" max="1000" /></p>
+  <p>Parent message: {{ $message() }}</p>
+  @if ($duration() > 0) {
+    <app-counter [duration]="$duration()" [(message)]="$message" />
   }
   <div>
     <app-wave-audio audioUrl="assets/audio.mp3" />
