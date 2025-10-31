@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { CounterComponent } from '@shared/components/counter/counter.component';
 import { HighlightDirective } from '@shared/directives/highlight.directive';
@@ -10,6 +11,7 @@ import { WaveAudioComponent } from '@info/components/wave-audio/wave-audio.compo
   selector: 'app-about',
   imports: [
     CommonModule,
+    FormsModule,
     CounterComponent,
     WaveAudioComponent,
     HighlightDirective,
