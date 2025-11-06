@@ -1,10 +1,30 @@
+@let categories = categoriesResouce.value();
+@let products = productsResouce.value();
+
 <div class="flex mt-5 flex-col md:flex-row md:space-x-4">
   <div class="w-full mb-4 md:w-56">
+    <p>status: {{ categoriesResouce.isLoading() }}</p>
+    <p>error: {{ categoriesResouce.error() }}</p>
+    <button
+      class="bg-blue-500 text-white px-4 py-2 rounded-md mb-3"
+      (click)="reloadCategories()">
+      Reload Categories
+    </button>
+    <button
+      class="bg-blue-500 text-white px-4 py-2 rounded-md mb-3"
+      (click)="resetCategories()">
+      Reset Categories
+    </button>
+    <button
+      class="bg-blue-500 text-white px-4 py-2 rounded-md mb-3"
+      (click)="reloadProducts()">
+      Reload Products
+    </button>
     <ul class="text-center md:text-left">
       <li>
         <a routerLink="/">All</a>
       </li>
-      @for (category of categories(); track category) {
+      @for (category of categories; track category) {
         <li>
           <a routerLink="/category/{{ category.slug }}">{{ category.name }}</a>
         </li>
@@ -12,7 +32,7 @@
     </ul>
   </div>
   <div class="grid grid-cols-2 gap-8 w-full md:grid-cols-4">
-    @for (product of products(); track product) {
+    @for (product of products; track product) {
       <app-product [product]="product" (addToCart)="addToCart($event)" />
     }
   </div>
