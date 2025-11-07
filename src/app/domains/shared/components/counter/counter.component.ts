@@ -8,6 +8,7 @@ import {
   effect,
   computed,
   model,
+  afterNextRender,
 } from '@angular/core';
 
 @Component({
@@ -22,7 +23,7 @@ export class CounterComponent implements OnInit, AfterViewInit, OnDestroy {
   $message = model.required<string>({ alias: 'message' });
   //$newMessage = linkedSignal(() => this.$message());
   $counter = signal(0);
-  $counterRef: number | undefined;
+  counterRef: number | null = null;
 
   constructor() {
     // NO ASYNC
@@ -41,6 +42,16 @@ export class CounterComponent implements OnInit, AfterViewInit, OnDestroy {
       this.$message();
       console.log('effect - message changed');
       this.doSomethingTwo();
+    });
+
+    /* Only client in SSR Applications */
+    afterNextRender(() => {
+      console.log('afterNextRender');
+      console.log('-'.repeat(10));
+      this.counterRef = window.setInterval(() => {
+        console.log('run interval');
+        this.$counter.update(statePrev => statePrev + 1);
+      }, 1000);
     });
   }
 
@@ -63,10 +74,6 @@ export class CounterComponent implements OnInit, AfterViewInit, OnDestroy {
     console.log('-'.repeat(10));
     console.log('duration =>', this.$duration());
     console.log('message =>', this.$message());
-    this.$counterRef = window.setInterval(() => {
-      console.log('run interval');
-      this.$counter.update(statePrev => statePrev + 1);
-    }, 1000);
   }
 
   ngAfterViewInit() {
@@ -79,7 +86,9 @@ export class CounterComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnDestroy() {
     console.log('ngOnDestroy');
     console.log('-'.repeat(10));
-    window.clearInterval(this.$counterRef);
+    if (this.counterRef) {
+      window.clearInterval(this.counterRef);
+    }
   }
 
   doSomething() {
