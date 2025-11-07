@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { WaveAudioComponent } from '@info/components/wave-audio/wave-audio.component';
@@ -12,12 +12,11 @@ import { BehaviorSubject, delay, Subject } from 'rxjs';
 @Component({
   selector: 'app-about',
   imports: [
-    CommonModule,
     FormsModule,
     CounterComponent,
     WaveAudioComponent,
-    HighlightDirective,
-  ],
+    HighlightDirective
+],
   templateUrl: './about.component.html',
 })
 export default class AboutComponent {
