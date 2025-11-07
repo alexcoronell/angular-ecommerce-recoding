@@ -9,6 +9,10 @@ import { ProductService } from '@shared/services/product.service';
 import { CategoryService } from '@shared/services/category.service';
 import { rxResource } from '@angular/core/rxjs-interop';
 
+interface ProductRequest {
+  category_slug?: string;
+}
+
 @Component({
   selector: 'app-list',
   imports: [ProductComponent, RouterLinkWithHref],
@@ -31,9 +35,9 @@ export default class ListComponent {
     loader: () => this.categoryService.getAllPromise(),
   });
 
-  productsResouce = rxResource({
-    request: () => ({ category_slug: this.slug() }),
-    loader: ({ request }) => this.productService.getProducts(request),
+  productsResource = rxResource<Product[], ProductRequest>({
+    params: () => ({ category_slug: this.slug() }),
+    stream: ({ params }) => this.productService.getProducts(params),
   });
 
   addToCart(product: Product) {
@@ -49,6 +53,6 @@ export default class ListComponent {
   }
 
   reloadProducts() {
-    this.productsResouce.reload();
+    this.productsResource.reload();
   }
 }
