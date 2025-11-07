@@ -7,7 +7,6 @@ import {
   input,
 } from '@angular/core';
 
-
 import WaveSurfer from 'wavesurfer.js';
 
 @Component({

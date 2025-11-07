@@ -15,8 +15,8 @@ import { BehaviorSubject, delay, Subject } from 'rxjs';
     FormsModule,
     CounterComponent,
     WaveAudioComponent,
-    HighlightDirective
-],
+    HighlightDirective,
+  ],
   templateUrl: './about.component.html',
 })
 export default class AboutComponent {

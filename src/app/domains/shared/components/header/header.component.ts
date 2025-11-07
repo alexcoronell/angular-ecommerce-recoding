@@ -6,11 +6,7 @@ import { SearchComponent } from '../search/search.component';
 
 @Component({
   selector: 'app-header',
-  imports: [
-    RouterLinkWithHref,
-    RouterLinkActive,
-    SearchComponent
-],
+  imports: [RouterLinkWithHref, RouterLinkActive, SearchComponent],
   templateUrl: './header.component.html',
 })
 export class HeaderComponent {

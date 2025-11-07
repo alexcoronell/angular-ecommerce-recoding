@@ -10,7 +10,6 @@ import {
   model,
 } from '@angular/core';
 
-
 @Component({
   selector: 'app-counter',
   imports: [],
