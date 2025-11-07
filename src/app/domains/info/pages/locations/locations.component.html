@@ -1,0 +1,10 @@
+@let locations = locationsRs.value();
+
+<ul>
+  @for (location of locations; track location) {
+    <li>
+      <h3>{{ location.name }}</h3>
+      <p>{{ location.description }}</p>
+    </li>
+  }
+</ul>
