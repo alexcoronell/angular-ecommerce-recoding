@@ -5,6 +5,7 @@ import {
   signal,
   input,
   afterNextRender,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 import WaveSurfer from 'wavesurfer.js';
@@ -13,6 +14,7 @@ import WaveSurfer from 'wavesurfer.js';
   selector: 'app-wave-audio',
   imports: [],
   templateUrl: './wave-audio.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WaveAudioComponent {
   readonly audioUrl = input.required<string>();

@@ -1,4 +1,9 @@
-import { Component, inject, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  input,
+} from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
 
 import { ProductComponent } from '../product/product.component';
@@ -15,6 +20,7 @@ interface ProductRequest {
   selector: 'app-related',
   imports: [ProductComponent],
   templateUrl: './related.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RelatedComponent {
   private productService = inject(ProductService);

@@ -1,4 +1,11 @@
-import { Component, inject, input, linkedSignal, effect } from '@angular/core';
+import {
+  Component,
+  inject,
+  input,
+  linkedSignal,
+  effect,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { rxResource } from '@angular/core/rxjs-interop';
 
@@ -20,6 +27,7 @@ interface ProductRequest {
   selector: 'app-product-detail',
   imports: [CommonModule, NgOptimizedImage, RelatedComponent],
   templateUrl: './product-detail.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class ProductDetailComponent {
   readonly slug = input<string>();

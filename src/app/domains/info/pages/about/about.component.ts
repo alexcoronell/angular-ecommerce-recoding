@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -18,6 +18,7 @@ import { BehaviorSubject, delay, Subject } from 'rxjs';
     HighlightDirective,
   ],
   templateUrl: './about.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class AboutComponent {
   $duration = signal(1000);

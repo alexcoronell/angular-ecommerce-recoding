@@ -9,12 +9,14 @@ import {
   computed,
   model,
   afterNextRender,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 @Component({
   selector: 'app-counter',
   imports: [],
   templateUrl: './counter.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CounterComponent implements OnInit, AfterViewInit, OnDestroy {
   $duration = input.required<number>({ alias: 'duration' });
