@@ -1,10 +1,15 @@
 import { Component, inject, input, linkedSignal, effect } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { rxResource } from '@angular/core/rxjs-interop';
+
+import { RelatedComponent } from '@products/components/related/related.component';
+
 import { ProductService } from '@shared/services/product.service';
 import { MetaTagsService } from '@shared/services/meta-tags.service';
-import { Product } from '@shared/models/product.model';
 import { CartService } from '@shared/services/cart.service';
-import { rxResource } from '@angular/core/rxjs-interop';
+
+import { Product } from '@shared/models/product.model';
+
 import { environment } from '@env/environment';
 
 interface ProductRequest {
@@ -13,7 +18,7 @@ interface ProductRequest {
 
 @Component({
   selector: 'app-product-detail',
-  imports: [CommonModule, NgOptimizedImage],
+  imports: [CommonModule, NgOptimizedImage, RelatedComponent],
   templateUrl: './product-detail.component.html',
 })
 export default class ProductDetailComponent {

@@ -42,8 +42,16 @@ export class ProductService {
 
     const endpoint = `products/slug/${params.product_slug}`;
     const url = `${environment.apiUrl}/api/v1/${endpoint}`;
-    console.log('params: ', params);
-    console.log('URL: ', url);
     return this.http.get<Product>(url);
+  }
+
+  getRelatedProducts(params: { product_slug?: string }) {
+    if (!params.product_slug) {
+      throw new Error('product_slug must be provided');
+    }
+
+    const endpoint = `products/slug/${params.product_slug}/related`;
+    const url = `${environment.apiUrl}/api/v1/${endpoint}`;
+    return this.http.get<Product[]>(url);
   }
 }
