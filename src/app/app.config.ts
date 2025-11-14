@@ -6,12 +6,13 @@ import {
   withPreloading,
 } from '@angular/router';
 import { provideHttpClient, withFetch } from '@angular/common/http';
-
-import { routes } from './app.routes';
 import {
   provideClientHydration,
   withEventReplay,
+  withIncrementalHydration,
 } from '@angular/platform-browser';
+
+import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -21,6 +22,6 @@ export const appConfig: ApplicationConfig = {
       withPreloading(PreloadAllModules)
     ),
     provideHttpClient(withFetch()),
-    provideClientHydration(withEventReplay()),
+    provideClientHydration(withEventReplay(), withIncrementalHydration()),
   ],
 };
